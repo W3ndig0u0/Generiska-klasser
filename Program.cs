@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 using System.Collections.Generic;
 
 namespace Generiska_klasser
@@ -31,29 +32,21 @@ namespace Generiska_klasser
           {
             return;
           }
-          cardInfo.Add(symbolCard[i] + nrCard[y], nrCard[y]);
+          // !Gör int till string
+          string cardStatsChar = symbolCard[i].ToString() + nrCard[y].ToString();
+          cardInfo.Add(cardStatsChar, nrCard[y]);
 
-          Console.WriteLine(cardInfo);
+          // Console.WriteLine(cardInfo[cardStatsChar] + cardStatsChar);
 
           //   !Tar in cardInfo till kort högen
           cardStack.Push(cardInfo);
         }
+
       }
-      // cardinfo[Spader 1]
-      //   cardInfo.Add("Strength", 20);
 
-      //   cardStack.Push(cardInfo);
+      Console.WriteLine(cardStack.Peek().Keys.First());
+      Console.WriteLine(cardStack.Peek().Values);
 
-
-      //   cardStack.Push(42);
-      //   cardStack.Push(665);
-
-      // Precis som för queue, peekar "nästa värde". Det som ligger högst upp – 665.
-      //   Console.WriteLine(cardStack.Peek());
-
-      // Tar bort det som ligger högst upp i högen och returnerar det.
-      // Så nu är bara 5 och 42 kvar i högen.
-      //   int s = cardStack.Pop();
     }
   }
 }
