@@ -21,54 +21,9 @@ namespace Generiska_klasser
       List<char> symbolCard = new List<char>() { '♠', '♥', '♣', '♦' };
       List<char> nrCard = new List<char>() { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'I', 'J', 'Q', 'K' };
 
-
-      string menuChoisesString = "";
-
-      Console.WriteLine("Välj ett alternativ!");
-      Console.WriteLine("1. Starta spel");
-      Console.WriteLine("2. Spelets regler");
-      Console.WriteLine("3. Avsluta programmet");
-      menuChoisesString = Console.ReadLine();
-      Menu(symbolCard, nrCard, cardInfo, cardQueue, menuChoisesString);
-
-    }
-
-    static void Menu(List<char> symbolCard, List<char> nrCard, Dictionary<string, char> cardInfo, Queue<Dictionary<string, char>> cardQueue, string menuChoisesString)
-    {
-      Console.ReadLine();
-
-      switch (menuChoisesString)
-      {
-        case "1":
-          // !Ska gå igenom varje Sybomlcard och ska ge de 13 olika siffror, så att alla siffror kommer ha 4 olika symboler, som i en riktig kortlek
-          LoopingThoughtCard(symbolCard, nrCard, cardInfo, cardQueue);
-
-          // !Startar spelet
-          CardGame(symbolCard, nrCard, cardInfo, cardQueue);
-          Console.Clear();
-          break;
-
-        case "2":
-          // !Instruktioner
-          Console.WriteLine("Ditt mål är att tvinga din motståndare att få mer än 21 poäng.");
-          Console.WriteLine("Du får poäng genom att dra kort, varje kort har mellan 1-13 poäng.");
-          Console.WriteLine("Om du får mer än 21 poäng har du förlorat.");
-          Console.WriteLine("Både du och din motståndare får två kort i början. Därefter får du");
-          Console.WriteLine("dra fler kort tills du är nöjd eller får över 21.");
-          Console.WriteLine("När du är färdig drar datorn kort till den har");
-          Console.WriteLine("mer poäng än dig eller över 21 poäng.");
-          break;
-
-        case "3":
-          Environment.Exit(0);
-          break;
-
-        default:
-          Console.WriteLine("Error!");
-          Console.WriteLine("Du har inte valt någon av alternativen");
-          break;
-      }
-
+      // !Ska gå igenom varje Sybomlcard och ska ge de 13 olika siffror, så att alla siffror kommer ha 4 olika symboler, som i en riktig kortlek
+      LoopingThoughtCard(symbolCard, nrCard, cardInfo, cardQueue);
+      CardGame(symbolCard, nrCard, cardInfo, cardQueue);
     }
 
 
@@ -83,7 +38,7 @@ namespace Generiska_klasser
 
       string cardChoises = "";
 
-      while (cardChoises != "n" && playerPoints <= 21 && aiPoints <= 21)
+      while (cardChoises != "n")
       {
         Console.WriteLine($"Din poäng: {playerPoints}");
         Console.WriteLine($"Datorns poäng: {aiPoints}");
@@ -106,20 +61,29 @@ namespace Generiska_klasser
             int aiNewPoints = CardValue(DrawRandomCard(symbolCard, nrCard, cardQueue));
             aiPoints += aiNewPoints;
             Console.WriteLine($"Din Motståndare kort är värt {aiNewPoints}");
-            Console.WriteLine($"Din Motståndare totala poäng är nu:  {aiPoints}");
+            Console.WriteLine($"Din Motståndare totala poäng är nu: {aiPoints}");
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine($"Tryck på ENTER för att fortsätta");
+            Console.ReadLine();
+            Console.Clear();
             break;
 
           case "n":
+            Console.WriteLine($"Du vill inte dra mer kort");
+            Console.WriteLine($"Hejdå");
+            Environment.Exit(0);
             break;
 
           default:
             Console.WriteLine();
-            Console.WriteLine("Error!");
+            Console.WriteLine("ERROR!!!");
             Console.WriteLine("Du har inte valt någon av alternativen (j) eller (n)");
             break;
         }
       }
     }
+
 
     static void LoopingThoughtCard(List<char> symbolCard, List<char> nrCard, Dictionary<string, char> cardInfo, Queue<Dictionary<string, char>> cardQueue)
     {
@@ -202,7 +166,7 @@ namespace Generiska_klasser
           Console.WriteLine(13);
           return intValue = 13;
         default:
-          Console.WriteLine("Error: Felaktigt värde");
+          Console.WriteLine("Error: Unknown value");
           return intValue;
       }
     }
@@ -220,7 +184,6 @@ namespace Generiska_klasser
       randomNumber.Next(cardQueue.Count);
 
       char returnChar = cardQueue.Peek()[cardStatsCharString];
-      Console.WriteLine(cardQueue.Peek()[cardStatsCharString]);
 
       cardQueue.Dequeue();
 
