@@ -56,7 +56,6 @@ namespace Generiska_klasser
             Console.WriteLine();
             Console.WriteLine($"Ditt nya kort är värt {newPoint} poäng");
             Console.WriteLine($"Din totala poäng är nu:  {playerPoints}");
-
             Console.WriteLine();
             int aiNewPoints = CardValue(DrawRandomCard(symbolCard, nrCard, cardQueue));
             aiPoints += aiNewPoints;
