@@ -43,9 +43,30 @@ namespace Generiska_klasser
         }
 
       }
+      string cardIndex = cardStack.Peek().Keys.First();
+      int cardValue = cardInfo[cardIndex];
 
-      Console.WriteLine(cardStack.Peek().Keys.First());
-      Console.WriteLine(cardStack.Peek().Values);
+
+
+      Console.WriteLine(cardValue);
+      Console.WriteLine(cardValue);
+
+      string aiPoints = "0";
+      string playerPoints = "0";
+      // Random random = new Random();
+
+      Console.ForegroundColor = ConsoleColor.Yellow;
+      Console.WriteLine("Nu kommer varje spelare dra 2 kort");
+      // aiPoints += random.Next(1, 14);
+      // playerPoints += random.Next(1, 14);
+
+      string cardChoises = "";
+
+      // Console.WriteLine($"Din poäng: {playerPoints}");
+      // Console.WriteLine($"Datorns poäng: {aiPoints}");
+      // Console.WriteLine();
+      // Console.WriteLine($"Svara med j (Ja) eller n (nej)");
+      // Console.WriteLine("Vill du ha ett till kort? (j/n)");
 
     }
   }
